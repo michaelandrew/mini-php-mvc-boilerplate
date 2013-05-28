@@ -9,13 +9,13 @@ class Bootstrap {
 		$url = explode('/', $url);
 		
 		if (empty($url[0])) {
-			require '../app/controllers/Index.php';
+			require CONTROLLERS.'/Index.php';
 			$controller = new Index();
 			$controller->index();
 			return false;
 		}
 
-		$file = '../app/controllers/' . $url[0] . '.php';
+		$file = CONTROLLERS.'/'.$url[0].'.php';
 		
 		if (file_exists($file)) {
 			require $file;
@@ -46,7 +46,7 @@ class Bootstrap {
 	}
 	
 	function error() {
-		require '../app/controllers/error.php';
+		require CONTROLLERS.'/error.php';
 		$controller = new Error();
 		$controller->index();
 		return false;

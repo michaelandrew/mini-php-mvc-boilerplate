@@ -2,7 +2,6 @@
 
 define('ROOT', dirname(__DIR__));
 define('CONFIG', ROOT.'/config');
-
 define('APPLICATION_ENV', getenv(APPLICATION_ENV));
 
 require CONFIG.'/paths.php';

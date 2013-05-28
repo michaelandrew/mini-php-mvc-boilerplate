@@ -8,10 +8,10 @@ class Controller {
 	
 	public function loadModel($name) {
 		
-		$path = '../app/models/'.$name.'.php';
+		$path = MODELS.'/'.$name.'.php';
 		
 		if (file_exists($path)) {
-			require '../app/models/'.$name.'.php';
+			require MODELS.'/'.$name.'.php';
 			
 			$modelName = $name . '_Model';
 			$this->model = new $modelName();

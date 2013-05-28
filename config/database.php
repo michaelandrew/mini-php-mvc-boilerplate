@@ -1,7 +1,7 @@
 <?php
 
 if (APPLICATION_ENV == 'DEVELOPMENT') {
-	require 'database/development.php';
+	require DB.'/development.php';
 } else {
-	require 'database/production.php';
+	require DB.'/production.php';
 }
