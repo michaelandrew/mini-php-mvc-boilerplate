@@ -2,11 +2,11 @@
 
 class Error extends Controller {
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 	}
 	
-	function index() {
+	public function index() {
 		$this->view->msg = 'This page doesnt exist<br />';
 		$this->view->render('error/index');
 	}

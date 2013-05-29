@@ -8,4 +8,3 @@ define('DB', 			CONFIG.'/database');
 define('CONTROLLERS', 	APP.'/controllers');
 define('MODELS', 		APP.'/models');
 define('VIEWS', 		APP.'/views');
-

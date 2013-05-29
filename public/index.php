@@ -7,6 +7,8 @@ define('APPLICATION_ENV', getenv(APPLICATION_ENV));
 require CONFIG.'/paths.php';
 require CONFIG.'/database.php';
 
+require CORE.'/Database.php';
+require CORE.'/Session.php';
 require CORE.'/Bootstrap.php';
 require CORE.'/Controller.php';
 require CORE.'/Model.php';
