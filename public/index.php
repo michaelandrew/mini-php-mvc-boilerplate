@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(-1);
-
 define('ROOT', dirname(__DIR__));
 define('CONFIG', ROOT.'/config');
 define('APPLICATION_ENV', getenv(APPLICATION_ENV));
