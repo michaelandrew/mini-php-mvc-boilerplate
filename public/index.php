@@ -4,9 +4,7 @@ define('ROOT', dirname(__DIR__));
 define('CONFIG', ROOT.'/config');
 define('APPLICATION_ENV', getenv(APPLICATION_ENV));
 
-require CONFIG.'/paths.php';
 require CONFIG.'/config.php';
-require CONFIG.'/database.php';
 
 function __autoload($class) {
 	require CORE . "/" . $class . ".php";

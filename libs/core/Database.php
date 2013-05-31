@@ -6,6 +6,16 @@ class Database extends PDO {
 		parent::__construct($DB_TYPE.':host='.$DB_HOST.';dbname='.$DB_NAME, $DB_USER, $DB_PASS);
 	}
 	
+	public function select($data, $array = array(), $fetch = PDO::FETCH_ASSOC) {
+		$statement = $this->prepare($data);
+		foreach ($array as $key => $value) {
+			$statement->bindValue("$key", $value);
+		}
+		
+		$statement->execute();
+		return $statement->fetchAll($fetch);
+	}
+	
 	public function insert($table, $data) {
 		ksort($data);
 		
@@ -38,6 +48,10 @@ class Database extends PDO {
 		}
 		
 		$statement->execute();
+	}
+	
+	public function delete($table, $location, $limit = 1) {
+		return $this->exec("DELETE FROM $table WHERE $location LIMIT $limit");
 	}
 	
 }
