@@ -6,6 +6,8 @@
 
 <?php $this->view('home/index');?>
 
+<p>Views need refactoring</p>
+
 </body>
 
 </html>
