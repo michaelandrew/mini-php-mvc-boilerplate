@@ -3,7 +3,7 @@
 </head>
 
 <body>
-	<?php $this->content; ?>
+	<?php // $this->content; ?>
 </body>
 
 </html>
