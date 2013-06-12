@@ -7,7 +7,7 @@ class Index extends Controller {
 	}
 	
 	public function index() {
-		// $this->view->layout('layout/global');
+		$this->view->render('home/index');
 	}
 
 }

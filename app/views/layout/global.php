@@ -4,9 +4,7 @@
 
 <body>
 
-<?php $this->view('home/index');?>
-
-<p>Views need refactoring</p>
+<p>Layout File</p>
 
 </body>
 
