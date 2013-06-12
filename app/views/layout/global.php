@@ -3,7 +3,9 @@
 </head>
 
 <body>
-	<?php // $this->content; ?>
+
+<?php $this->view('home/index');?>
+
 </body>
 
 </html>

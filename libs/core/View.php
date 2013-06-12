@@ -3,10 +3,15 @@
 class View {
 
 	public function __construct() {
+		$this->layout('layout/global');
 	}
 
-	public function render($name) {
-		require VIEWS.'/'.$name.'.php';
+	public function layout($layout) {
+		require VIEWS.'/'.$layout.'.php';
+	}
+	
+	public function view($view) {
+		include VIEWS.'/'.$view.'.php';
 	}
 
 }
