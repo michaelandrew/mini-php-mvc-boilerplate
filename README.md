@@ -1,2 +1,2 @@
-# Mini HTML5 MVC
-Small HTML5 MVC Framework for little PHP Applications.
+# Mini PHP MVC
+Small PHP MVC Framework for little Applications.
