@@ -1,4 +1,4 @@
 # Mini PHP MVC
 Small PHP MVC framework for little applications.
 
-This is by no means a full framework for PHP applications, it is merely a small structure to build on.
+This small framework was built as a core to my MVC pattern PHP applications and is by no means a full framework. From here it can be and has been adapted in a variety of ways to suit each individual project, however it is a base to kick-start development and build upon.
