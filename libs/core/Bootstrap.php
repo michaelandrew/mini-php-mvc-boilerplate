@@ -2,55 +2,142 @@
 
 class Bootstrap {
 
-	function __construct() {
+	private $url            = null;
+	private $controller     = null;
 
-		$url = isset($_GET['url']) ? $_GET['url'] : null;
-		$url = rtrim($url, '/');
-		$url = filter_var($url, FILTER_SANITIZE_URL);
-		$url = explode('/', $url);
-		
-		if (empty($url[0])) {
-			require CONTROLLERS.'/Index.php';
-			$controller = new Index();
-			$controller->index();
+	private $controllerPath = CONTROLLERS;
+	private $modelPath      = MODELS;
+	private $errorFile      = 'Error.php';
+	private $defaultFile    = 'Index.php';
+
+	public function init() {
+		$this->getUrl();
+
+		if (empty($this->url[0])) {
+			$this->loadDefault();
 			return false;
 		}
 
-		$file = CONTROLLERS.'/'.$url[0].'.php';
-		
+		$this->loadExisting();
+		$this->callMethod();
+	}
+	
+	public function setPath($path) {
+		$this->controllerPath = trim($path, DS) . DS;
+	}
+
+	public function setModelPath($path) {
+		$this->modelPath = trim($path, DS) . DS;
+	}
+
+	public function setErrorFile($path) {
+		$this->errorFile = trim($path, DS);
+	}
+
+	public function setDefaultFile($path) {
+		$this->defaultFile = trim($path, DS);
+	}
+
+	private function getUrl() {
+		$url = isset($_GET['url']) ? $_GET['url'] : null;
+		$url = rtrim($url, DS);
+		$url = filter_var($url, FILTER_SANITIZE_URL);
+		$this->url = explode(DS, $url);
+	}
+
+	private function loadDefault() {
+		require $this->controllerPath . DS . $this->defaultFile;
+		$this->controller = new Index();
+		$this->controller->index();
+	}
+
+	private function loadExisting() {
+		$file = $this->controllerPath . DS . $this->url[0] . '.php';
+
 		if (file_exists($file)) {
 			require $file;
+			$this->controller = new $this->url[0];
+			$this->controller->loadModel($this->url[0]);
 		} else {
 			$this->error();
+			return false;
 		}
-		
-		$controller = new $url[0];
-		$controller->loadModel($url[0]);
+	}
+    
+	private function callMethod() {
+		$length = count($this->url);
 
-		if (isset($url[2])) {
-			if (method_exists($controller, $url[1])) {
-				$controller->{$url[1]}($url[2]);
-			} else {
+		if ($length > 1) {
+			if (!method_exists($this->controller, $this->url[1])) {
 				$this->error();
 			}
+		}
+
+		switch ($length) {
+			case 5:
+			$this->controller->{$this->url[1]}($this->url[2], $this->url[3], $this->url[4]);
+			break;
+
+			case 4:
+			$this->controller->{$this->url[1]}($this->url[2], $this->url[3]);
+			break;
+
+			case 3:
+			$this->controller->{$this->url[1]}($this->url[2]);
+			break;
+
+			case 2:
+			$this->controller->{$this->url[1]}();
+			break;
+
+			default:
+			$this->controller->index();
+			break;
+		}
+	}
+    
+	private function error() {
+		require $this->controllerPath . DS . $this->errorFile;
+		$this->controller = new Error();
+		$this->controller->index();
+		exit;
+	}
+	
+	function setReporting() {
+		if (ENVIRONMENT == 'development') {
+		    error_reporting(E_ALL);
+		    ini_set('display_errors', 'On');
 		} else {
-			if (isset($url[1])) {
-				if (method_exists($controller, $url[1])) {
-					$controller->{$url[1]}();
-				} else {
-					$this->error();
-				}
-			} else {
-				$controller->index();
-			}
+		    error_reporting(E_ALL);
+		    ini_set('display_errors', 'Off');
+		    ini_set('log_errors', 'On');
+		    ini_set('error_log',  LOGS . DS . 'error.log');
 		}
 	}
 	
-	function error() {
-		require CONTROLLERS.'/Error.php';
-		$controller = new Error();
-		$controller->index();
-		return false;
+	function stripSlashesDeep($value) {
+		$value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
+		return $value;
 	}
-
+	
+	function removeMagicQuotes() {
+		if (get_magic_quotes_gpc()) {
+			$_GET    = stripSlashesDeep($_GET   );
+			$_POST   = stripSlashesDeep($_POST  );
+			$_COOKIE = stripSlashesDeep($_COOKIE);
+		}
+	}
+	
+	function unregisterGlobals() {
+		if (ini_get('register_globals')) {
+			$array = array('_SESSION', '_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
+			foreach ($array as $value) {
+				foreach ($GLOBALS[$value] as $key => $var) {
+					if ($var === $GLOBALS[$key]) {
+						unset($GLOBALS[$key]);
+					}
+				}
+			}
+		}
+	}
 }

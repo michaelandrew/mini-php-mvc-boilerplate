@@ -6,7 +6,7 @@ class View {
 	}
 	
 	public function render($view) {
-		require VIEWS.'/'.$view.'.php';
+		require VIEWS . DS . $view . '.php';
 	}
 
 }

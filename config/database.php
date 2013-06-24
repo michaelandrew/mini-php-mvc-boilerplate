@@ -1,6 +1,6 @@
 <?php
 
-if (APPLICATION_ENV == 'development') {
+if (ENVIRONMENT == 'development') {
 	require DB.'/development.php';
 } else {
 	require DB.'/production.php';

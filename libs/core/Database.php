@@ -44,7 +44,7 @@ class Database extends PDO {
 		$statement = $this->prepare("UPDATE $table SET $fields WHERE $location");
 		
 		foreach($data as $key => $value) {
-			$statement->bindValue(":$key", $value)''
+			$statement->bindValue(":$key", $value);
 		}
 		
 		$statement->execute();

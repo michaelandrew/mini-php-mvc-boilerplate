@@ -1,12 +1,17 @@
 <?php
 
+define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__DIR__));
-define('CONFIG', ROOT.'/config');
-
-require CONFIG.'/index.php';
+define('CONFIG', ROOT . DS . 'config');
+require CONFIG . DS . 'index.php';
 
 function __autoload($class) {
-	require CORE . "/" . $class . ".php";
+	require CORE . DS . $class . ".php";
 }
 
-$app = new Bootstrap();
+$bootstrap = new Bootstrap();
+
+$bootstrap->init();
+$bootstrap->setReporting();
+$bootstrap->removeMagicQuotes();
+$bootstrap->unregisterGlobals();

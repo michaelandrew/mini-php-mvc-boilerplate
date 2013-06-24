@@ -1,5 +1,5 @@
 <?php
 
-define('ENVIRONMENT', getenv(ENVIRONMENT));
+define('ENVIRONMENT', getenv('ENVIRONMENT'));
 
-define('SALT_KEY', '');
+define('SALT_KEY', ''); // Fill this in!
