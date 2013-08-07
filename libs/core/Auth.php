@@ -2,14 +2,14 @@
 
 class Auth {
 	
-	public static function init() {
+	public static function init($location) {
 		@session_start();
 
         $auth = $_SESSION['online'];
 
         if ($auth == false) {
             Session::destroy();
-            header('location: /account/login');
+            header('location: $location');
             exit;
         }
 	}
