@@ -1,21 +1,29 @@
 <?php
 
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', dirname(dirname(__DIR__)));
-define('ROUTE', basename(__DIR__));
-define('CONFIG', ROOT . DS . 'config');
-require CONFIG . DS . 'index.php';
+// define('DS', DIRECTORY_SEPARATOR);
+// define('ROOT', dirname(dirname(__DIR__)));
+// define('ROUTE', basename(__DIR__));
+// define('CONFIG', ROOT . DS . 'config');
+// require CONFIG . DS . 'index.php';
 
-function __autoload($class) {
-	require CORE . DS . $class . ".php";
-}
+// function __autoload($class) {
+// 	require CORE . DS . $class . ".php";
+// }
 
-require APPLIBS . DS . ROUTE . DS . "Controller.php";
-require APPLIBS . DS . ROUTE . DS . "Model.php";
+// require APPLIBS . DS . ROUTE . DS . "Controller.php";
+// require APPLIBS . DS . ROUTE . DS . "Model.php";
 
-$bootstrap = new Bootstrap();
+// $bootstrap = new Bootstrap();
 
-$bootstrap->init();
-$bootstrap->setReporting();
-$bootstrap->removeMagicQuotes();
-$bootstrap->unregisterGlobals();
+// $bootstrap->init();
+// $bootstrap->setReporting();
+// $bootstrap->removeMagicQuotes();
+// $bootstrap->unregisterGlobals();
+
+namespace Core;
+
+define('ROOT', 	realpath(__DIR__.'/../../'));
+define('ROUTE', realpath(__DIR__));
+require ROOT.'/libs/core/Bootstrap.php';
+
+Bootstrap::init();

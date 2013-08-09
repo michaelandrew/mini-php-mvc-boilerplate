@@ -1,4 +1,5 @@
 <?php
+namespace Controllers;
 
 class Error extends Www {
 
