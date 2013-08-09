@@ -1,6 +1,6 @@
 <?php
 
-class Error extends Controller {
+class Error extends Www {
 
 	public function __construct() {
 		parent::__construct();
