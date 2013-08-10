@@ -3,6 +3,8 @@ namespace Core;
 
 class Route {
 
+	private static $fileExtension 	= '.php';
+
 	public static function request() {
 		$url = isset($_GET['url']) ? $_GET['url'] : null;
 		$url = rtrim($url, '/');
@@ -20,14 +22,17 @@ class Route {
 		// If the method if not get, look for prefixes
 		// 
 		// If no prefixes exist, default to method
-		
-		// if ($url[0] != null) {
-		// 	print ucfirst($url[0]).' Controller';
-		// } else {
-		// 	print 'Index Controller';
-		// }
 
-		// new \Controllers\Index;
+		$controller	= ($url[0] == null ? 'Index' : ucfirst($url[0]));
+
+		$error		= CONTROLLERS.'/'.'Error'.self::$fileExtension;
+		$path 		= CONTROLLERS.'/'.$controller.self::$fileExtension;
+
+		if (file_exists($path)) {
+			require $path;
+		} else {
+			require $error;
+		}
 	}
 
 }

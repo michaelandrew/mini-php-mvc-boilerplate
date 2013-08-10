@@ -9,6 +9,7 @@ class Index extends \Www\Controller {
 	
 	public function index() {
 		// $this->view->render('home/index');
+		echo 'Hello World';
 	}
 
 }

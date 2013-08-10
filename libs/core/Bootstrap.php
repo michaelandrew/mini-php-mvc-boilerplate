@@ -4,13 +4,12 @@ namespace Core;
 class Bootstrap {
 
 	private static $URL 		= '';
-	private static $DOMAIN		= '';
-	private static $SUBDOMAIN	= '';
 	private static $METHOD 		= '';
+	private static $SUBDOMAIN	= '';
 	private static $CONTROLLER 	= '';
 
-	public static $startMemory	= '';
 	public static $startTime	= '';
+	public static $startMemory	= '';
 
 	public static function init() {
 
@@ -22,7 +21,9 @@ class Bootstrap {
 			isset($_SERVER['ENVIRONMENT']) ? $_SERVER['ENVIRONMENT'] : 'production'
 		);
 
-		defined('APP') or 			define('APP', 			ROOT.'/app/'.ROUTE);
+		self::setDomains();
+
+		defined('APP') or 			define('APP', 			ROOT.'/app/'.self::$SUBDOMAIN);
 		defined('CONTROLLERS') or 	define('CONTROLLERS', 	APP.'/controllers');
 		defined('VIEWS') or 		define('MODELS', 		APP.'/models');
 		defined('APP') or 			define('VIEWS', 		APP.'/views');
@@ -30,7 +31,6 @@ class Bootstrap {
 		self::$startMemory	 = microtime(true);
 		self::$startTime	 = memory_get_usage();
 
-		self::setDomains();
 		self::autoLoader();
 		self::router();
 	}
