@@ -1,10 +1,14 @@
 <?php
+namespace Core;
 
 class Controller {
 
-	function __construct() {
-		$this->view = new View();
-		$this->view->controller = strtolower(get_class($this));
+	// function __construct() {
+		// $this->view = new View();
+		// $this->view->controller = strtolower(get_class($this));
+	// }
+
+	public function __construct() {
 	}
 	
 	public function loadModel($name) {
