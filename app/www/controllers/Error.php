@@ -1,7 +1,6 @@
 <?php
-namespace Controllers;
 
-class Error extends Www {
+class Error extends \App\Www\Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -9,7 +8,6 @@ class Error extends Www {
 	
 	public function index() {
 		$this->view->msg = 'This page doesnt exist<br />';
-		$this->view->render('error/index');
 	}
 
 }
