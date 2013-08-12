@@ -22,7 +22,7 @@ class Route {
 			self::load(self::$URL[0]);
 		}
 
-		self::call(self::$URL);
+		self::call(self::$URL, self::$REQUEST);
 	}
 
 	public static function load($controller) {
@@ -37,8 +37,11 @@ class Route {
 		}
 	}
 
-	public static function call($url) {
+	public static function call($url, $request) {
+
 		$length = count($url);
+
+		$request = ($request == 'GET') ? '' : strtolower($request).'_';
 
 		if ($length > 1) {
 			if (!method_exists(self::$CONTROLLER, $url[1])) {
@@ -48,23 +51,23 @@ class Route {
 
 		switch ($length) {
 			case 5:
-			self::$CONTROLLER->{$url[1]}($url[2], $url[3], $url[4]);
+			self::$CONTROLLER->{$request.$url[1]}($url[2], $url[3], $url[4]);
 			break;
 
 			case 4:
-			self::$CONTROLLER->{$url[1]}($url[2], $url[3]);
+			self::$CONTROLLER->{$request.$url[1]}($url[2], $url[3]);
 			break;
 
 			case 3:
-			self::$CONTROLLER->{$url[1]}($url[2]);
+			self::$CONTROLLER->{$request.$url[1]}($url[2]);
 			break;
 
 			case 2:
-			self::$CONTROLLER->{$url[1]}();
+			self::$CONTROLLER->{$request.$url[1]}();
 			break;
 
 			default:
-			self::$CONTROLLER->index();
+			self::$CONTROLLER->{$request.'index'}();
 			break;
 		}
 	}
