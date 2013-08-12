@@ -8,8 +8,7 @@ class Controller {
 		// $this->view->controller = strtolower(get_class($this));
 	// }
 
-	public function __construct() {
-	}
+	public function __construct() {}
 	
 	public function loadModel($name) {
 		

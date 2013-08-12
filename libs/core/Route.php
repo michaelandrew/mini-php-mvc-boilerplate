@@ -1,10 +1,13 @@
 <?php
+namespace Core;
 
 class Route {
 
 	public static $URL 			= '';
 	public static $REQUEST 		= '';
 	public static $CONTROLLER 	= '';
+
+	public static $fileExtension = '.php';
 
 	public static function init() {
 		$url 			= isset($_GET['url']) ? $_GET['url'] : null;
@@ -23,9 +26,14 @@ class Route {
 	public static function load($request, $url) {
 		self::$CONTROLLER = empty($url[0]) ? 'Index' : ucfirst($url[0]);
 
-		$path = CONTROLLERS.self::$CONTROLLER.'.php';
+		$path = CONTROLLERS.'/'.self::$CONTROLLER.self::$fileExtension;
 
-		print $path;
+		if (file_exists($path) && is_file($path)) {
+			require $path;
+			new self::$CONTROLLER;
+		} else {
+			// self::error();
+		}
 	}
 
 }

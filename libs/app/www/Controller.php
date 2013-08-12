@@ -1,5 +1,5 @@
 <?php
-namespace Www;
+namespace App\Www;
 
 class Controller extends \Core\Controller {
 	

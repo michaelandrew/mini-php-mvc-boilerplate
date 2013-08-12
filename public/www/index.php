@@ -19,6 +19,8 @@
 // $bootstrap->setReporting();
 // $bootstrap->removeMagicQuotes();
 // $bootstrap->unregisterGlobals();
+// 
+namespace Core;
 
 define('ROOT', 	realpath(__DIR__.'/../../'));
 define('ROUTE', basename(__DIR__));

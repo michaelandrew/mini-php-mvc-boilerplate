@@ -1,14 +1,12 @@
 <?php
-namespace Controllers;
 
-class Index extends \Www\Controller {
+class Index extends \App\Www\Controller {
 
 	public function __construct() {
 		parent::__construct();
 	}
 	
 	public function index() {
-		// $this->view->render('home/index');
 		echo 'Hello World';
 	}
 

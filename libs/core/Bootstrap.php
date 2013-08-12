@@ -1,27 +1,25 @@
 <?php
+namespace Core;
 
 class Bootstrap {
 
 	public static function init() {
 
+		define('LIBS', 			ROOT.'/libs');
+
 		define('APP', 			ROOT.'/libs/app/'.ROUTE);
 		define('CORE', 			ROOT.'/libs/core');
-		define('CONTROLLERS', 	ROOT.'/app/'.ROUTE.'/controllers/');
+		define('CONTROLLERS', 	ROOT.'/app/'.ROUTE.'/controllers');
 
 		spl_autoload_register(function($class) {
 
-			$paths = array(
-				APP,
-				CORE
-			);
+			$file = sprintf(LIBS.'/%s.php', $class);
+			$file = str_replace('\\', '/', $file);
 
-			foreach ($paths as $path) {
-				$file = sprintf('%s/%s.php', $path, $class);
-
-				if (file_exists($file) && is_file($file)) {
-		            require $file;
-		        }
-			}
+			if (file_exists($file) && is_file($file)) {
+	            require $file;
+	        } else {
+	        }
 
 		});
 
