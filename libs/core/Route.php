@@ -16,18 +16,64 @@ class Route {
 		self::$URL 		= explode('/', $url);
 		self::$REQUEST 	= $_SERVER['REQUEST_METHOD'];
 
-		self::load(self::$REQUEST, self::$URL);
+		if (empty(self::$URL[0])) {
+			self::load('Index');
+		} else {
+			self::load(self::$URL[0]);
+		}
+
+		self::call(self::$URL);
 	}
 
-	public static function load($request, $url) {
-		self::$CONTROLLER = empty($url[0]) ? 'Index' : ucfirst($url[0]);
-		$path = CONTROLLERS.'/'.self::$CONTROLLER.self::$fileExtension;
-		self::$CONTROLLER = file_exists($path) ? self::$CONTROLLER : 'Error';
-		$path = file_exists($path) ? $path : CONTROLLERS.'/Error'.self::$fileExtension;
+	public static function load($controller) {
+		$path = CONTROLLERS.'/'.ucfirst($controller).self::$fileExtension;
+		
+		if (file_exists($path)) {
+			require $path;
+			self::$CONTROLLER = new $controller;
+		} else {
+			self::error();
+			return false;
+		}
+	}
 
-		require $path;
-		self::$CONTROLLER = new self::$CONTROLLER;
+	public static function call($url) {
+		$length = count($url);
+
+		if ($length > 1) {
+			if (!method_exists(self::$CONTROLLER, $url[1])) {
+				self::error();
+			}
+		}
+
+		switch ($length) {
+			case 5:
+			self::$CONTROLLER->{$url[1]}($url[2], $url[3], $url[4]);
+			break;
+
+			case 4:
+			self::$CONTROLLER->{$url[1]}($url[2], $url[3]);
+			break;
+
+			case 3:
+			self::$CONTROLLER->{$url[1]}($url[2]);
+			break;
+
+			case 2:
+			self::$CONTROLLER->{$url[1]}();
+			break;
+
+			default:
+			self::$CONTROLLER->index();
+			break;
+		}
+	}
+
+	public static function error() {
+		require CONTROLLERS.'/Error'.self::$fileExtension;
+		self::$CONTROLLER = new \Error;
 		self::$CONTROLLER->index();
+		exit;
 	}
 
 }
