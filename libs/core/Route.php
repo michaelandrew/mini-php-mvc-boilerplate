@@ -30,11 +30,15 @@ class Route {
 
 		if (file_exists($path) && is_file($path)) {
 			require $path;
-			new self::$CONTROLLER;
+			self::$CONTROLLER = new self::$CONTROLLER;
+			self::$CONTROLLER->index();
 		} else {
 			require CONTROLLERS.'/Error'.self::$fileExtension;
-			new \Error;
+			self::$CONTROLLER = new \Error;
+			self::$CONTROLLER->index();
 		}
+
+
 	}
 
 }
