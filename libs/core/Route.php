@@ -16,10 +16,6 @@ class Route {
 		self::$URL 		= explode('/', $url);
 		self::$REQUEST 	= $_SERVER['REQUEST_METHOD'];
 
-		// Route URL
-
-		// Route to Controller Method based on Request
-
 		self::load(self::$REQUEST, self::$URL);
 	}
 
@@ -37,8 +33,6 @@ class Route {
 			self::$CONTROLLER = new \Error;
 			self::$CONTROLLER->index();
 		}
-
-
 	}
 
 }
