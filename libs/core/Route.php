@@ -21,18 +21,13 @@ class Route {
 
 	public static function load($request, $url) {
 		self::$CONTROLLER = empty($url[0]) ? 'Index' : ucfirst($url[0]);
-
 		$path = CONTROLLERS.'/'.self::$CONTROLLER.self::$fileExtension;
+		self::$CONTROLLER = file_exists($path) ? self::$CONTROLLER : 'Error';
+		$path = file_exists($path) ? $path : CONTROLLERS.'/Error'.self::$fileExtension;
 
-		if (file_exists($path) && is_file($path)) {
-			require $path;
-			self::$CONTROLLER = new self::$CONTROLLER;
-			self::$CONTROLLER->index();
-		} else {
-			require CONTROLLERS.'/Error'.self::$fileExtension;
-			self::$CONTROLLER = new \Error;
-			self::$CONTROLLER->index();
-		}
+		require $path;
+		self::$CONTROLLER = new self::$CONTROLLER;
+		self::$CONTROLLER->index();
 	}
 
 }

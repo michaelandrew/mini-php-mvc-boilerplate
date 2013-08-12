@@ -7,7 +7,7 @@ class Index extends \App\Www\Controller {
 	}
 	
 	public function index() {
-		// echo 'Hello World';
+		echo 'Hello World';
 	}
 
 }
