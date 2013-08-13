@@ -1,6 +1,7 @@
 <?php
+namespace App\Www;
 
-class Www_Model extends Model {
+class Model extends \Core\Model {
 
 	public function __construct() {
 		parent::__construct();

@@ -6,6 +6,7 @@ class Bootstrap {
 	public static function init() {
 
 		define('LIBS', 			ROOT.'/libs');
+		define('CONFIG', 		ROOT.'/config');
 
 		define('APP', 			ROOT.'/libs/app/'.ROUTE);
 		define('CORE', 			ROOT.'/libs/core');
@@ -23,6 +24,7 @@ class Bootstrap {
 
 		});
 
+		Config::init();
 		Route::init();
 	}
 

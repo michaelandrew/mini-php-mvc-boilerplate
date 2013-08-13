@@ -1,6 +1,6 @@
 <?php
 
-class Index_Model extends Www_Model {
+class Index extends \App\Www\Model {
 
 	function __construct() {
 		parent::__construct();

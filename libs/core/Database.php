@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 
 class Database extends PDO {
 	
