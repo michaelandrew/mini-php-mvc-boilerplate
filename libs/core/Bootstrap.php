@@ -19,7 +19,6 @@ class Bootstrap {
 
 			if (file_exists($file) && is_file($file)) {
 	            require $file;
-	        } else {
 	        }
 
 		});
