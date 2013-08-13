@@ -7,7 +7,7 @@ class Config {
 	public static $startMemory 	= 0;
 
 	public static function init() {
-		require CONFIG.'/Config.php';
+		require CONFIG.'/config.php';
 
 		putenv('TZ=Europe/London');
 		date_default_timezone_set('Europe/London');
