@@ -1,10 +1,10 @@
 <?php
-namespace App\Www;
+namespace App;
 
-class Model extends \Core\Model {
+class Controller extends \Core\Controller {
 
 	public function __construct() {
 		parent::__construct();
 	}
-
+	
 }

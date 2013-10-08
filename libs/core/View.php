@@ -1,13 +1,24 @@
 <?php
 namespace Core;
 
-class View {
+use \Core\Route;
 
-	public function __construct() {
-	}
+class View {
 	
-	public function render($view) {
-		require VIEWS . DS . $view . '.php';
+	public function __construct() {}
+
+	public function render($layout, $views = null) {
+		if (isset($views)) {
+ 			foreach ($views as $view => $contents) {
+			    if (is_array($view) && !empty($view)) {
+			        extract($view);
+			    }
+			    ob_start();
+			    include VIEWS.'/'.$contents.Route::$fileExtention;
+			    ${$view} = ob_get_clean();
+ 			}
+		}
+		require VIEWS.'/'.$layout.Route::$fileExtention;
 	}
 
 }

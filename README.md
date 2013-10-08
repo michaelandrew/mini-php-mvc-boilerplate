@@ -1,4 +1,9 @@
-# Mini PHP MVC
-Small PHP MVC framework for little applications.
+[Fresh MVC](https://github.com/michaelandrew/Fresh-MVC)
+===========
 
-This small framework was built as a core to my MVC pattern PHP applications and is by no means a full framework. From here it can be and has been adapted in a variety of ways to suit each individual project, however it is a base to kick-start development and build upon.
+## Introduction
+
+**Small PHP MVC Framework**
+
+Fresh MVC is a small PHP framework that I built while I was learning the MVC pattern.
+It can be used by beginners to get started with MVC pattern development or for anyone that needs a small & lightweight framework for a little PHP application
