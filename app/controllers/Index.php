@@ -7,7 +7,7 @@ class Index extends \App\Controller {
 	}
 	
 	public function index() {
-		$this->view->render('layout/layout', array('content' => 'home/index'));
+		$this->view->render('layout/global', array('content' => 'home/index'));
 	}
 
 }
