@@ -1,4 +1,4 @@
-[Fresh MVC](https://github.com/michaelandrew/Fresh-MVC)
+[FreshMVC](https://github.com/michaelandrew/FreshMVC)
 ===========
 
 ## Introduction
