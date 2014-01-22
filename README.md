@@ -1,4 +1,4 @@
-[MVC Boilerplate](https://github.com/michaelandrew/MVC-Boilerplate)
+[MVC Boilerplate](https://github.com/michaelandrew/mvc-boilerplate)
 ===========
 
 ## Introduction
