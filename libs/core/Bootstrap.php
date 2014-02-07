@@ -31,6 +31,7 @@ class Bootstrap {
 
 		});
 
+		Config::init();
 		Route::init();
 	}
 

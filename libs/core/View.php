@@ -7,7 +7,12 @@ class View {
 	
 	public function __construct() {}
 
-	public function render($layout, $views = null) {
+	public function render($layout, $views = null, $vars = null) {
+
+		if (isset($vars)) {
+			extract($vars);
+		}
+
 		if (isset($views)) {
  			foreach ($views as $view => $contents) {
 			    if (is_array($view) && !empty($view)) {
@@ -18,6 +23,7 @@ class View {
 			    ${$view} = ob_get_clean();
  			}
 		}
+		
 		require VIEWS.'/'.$layout.Route::$fileExtention;
 	}
 
